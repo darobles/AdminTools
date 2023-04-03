@@ -1,0 +1,147 @@
+<div class="row">
+
+    <div class="col-md-6 col-xs-12">
+        <div class="col-lg-12">
+            <div class="card-header">
+                <i class="fal fa-scroll"></i> Administración de Esquemas
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-6 row">
+                        <a role="button" (click)="file.click()" class="font-weight-normal"><i class="far fa-cloud-upload-alt"></i> Importar esquema</a>
+                    </div>
+                    <div class="mb-6 row">
+                        <a role="button" (click)="expEsqActual()" class="font-weight-normal"><i class="far fa-cloud-download-alt"></i> Exportar esquema</a>
+                    </div>
+                    <div class="mb-6 row">
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                            
+                            <button class="btn p-0" ngbDropdownToggle style="color:#398bf7">
+                                <i class="far fa-server"></i>&nbsp;{{ schemaSel }}
+                            </button>
+                            <div class="dropdown-menu" ngbDropdownMenu>
+                                <button ngbDropdownItem *ngFor="let item of schemas;  let i = index"
+                                    (click)="changeValue(item)"><p [ngClass]="(item.activo)?'text-success':'text-danger'">{{item.nombre}} <i *ngIf="i == 0" class="far fa-star fa-xs pt-0"></i></p></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-6 row">
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                            
+                            <button class="btn pl-0 pt-0" ngbDropdownToggle style="color:#398bf7">
+                                <i class="far fa-trash-alt"></i>&nbsp;{{schemaEliSel}}
+                            </button>
+                            <div class="dropdown-menu" ngbDropdownMenu>
+                                <div *ngFor="let item of schemas">
+                                    <button *ngIf="!item.activo" ngbDropdownItem 
+                                    (click)="eliSchema(item)">{{item.nombre}}</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-12">
+            <div class="card-header">
+                <i class="fal fa-traffic-light-stop"></i> Administración del Sistema SICTRAV
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-6 row">
+                        <a role="button" (click)="iniciarSictrav()" class="font-weight-normal"><i class="far fa-upload"></i> Iniciar SICTRAV</a>
+                    </div>
+                    <div class="mb-6 row">
+                        <a role="button" (click)="detenerSictrav()" class="font-weight-normal"><i class="far fa-power-off"></i> Detener SICTRAV</a>
+                    </div>
+                    <div class="mb-6 row">
+                        <a role="button" (click)="reiniciarSictrav()" class="font-weight-normal"><i class="far fa-sync"></i> Reiniciar SICTRAV</a>
+                    </div>
+                    <!--<div class="mb-6 row">
+                        <a role="button" (click)="exportarLog()" class="font-weight-normal"><i class="far fa-scroll"></i>Exportar Log del Sistema</a>
+                    </div> -->
+                    <div class="mb-6 row" >
+                        <a role="button" (click)="exportarLog()" class="font-weight-normal"><i class="far fa-scroll"></i>Exportar Log del Sistema</a>
+                        <mat-form-field class="example-form-field" appearance="standard" style="margin-top: -18px; width:30px;color:#398bf7;">                            
+                                <mat-date-range-input
+                                  [formGroup]="rangeFecLog"
+                                  [rangePicker]="logDatePicker" hidden>
+                                  <input matStartDate placeholder="Start date" formControlName="start" hidden>
+                                  <input matEndDate placeholder="End date" formControlName="end"  hidden>
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matSuffix [for]="logDatePicker" class="mb-1"></mat-datepicker-toggle>
+                                <mat-date-range-picker #logDatePicker ></mat-date-range-picker>
+                              </mat-form-field>
+                        <div class="col-sm-4 col-lg-4 p-1">
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="card-header">
+                <i class="fal fa-database"></i> Administración Base de Datos
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-6 row">
+                        <a role="button" (click)="iniciarBD()" class="font-weight-normal"><i class="far fa-play-circle"></i> Iniciar Base de Datos</a>
+                    </div>
+                    <div class="mb-6 row">
+                        <a role="button" (click)="detenerBD()" class="font-weight-normal"><i class="far fa-stop-circle"></i> Detener Base de Datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+                
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <app-log-sictrav></app-log-sictrav>
+    </div> 
+    <notifier-container></notifier-container> 
+    <div class="col-sm-12" style="visibility:hidden;">
+        <div class="custom-file">
+          <input #file type="file" class="custom-file-input"  accept=".dmp" id="inputGroupFile01" (change)=fileEvent($event)>
+          <label class="custom-file-label" for="inputGroupFile01"><b>Buscar archivo</b></label>
+        </div>
+      </div>
+      <div class="card" style="visibility:hidden;">
+        <div class="card-body">
+            <ng-template #modal let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ modalTitle }}</h4>
+                    <!--<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body">
+                    <p>{{ modalBody }}</p>
+                   <!--<div *ngIf="pbBoost" class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-faded" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: {{ pbVal }}%"></div>
+                     </div> -->
+                     <div >
+                        <mat-progress-bar                        
+                        color="primary" 
+                        buffer=75 
+                        value= "{{ pbVal }}"
+                        mode="indeterminate"></mat-progress-bar>
+                     </div>
+                     
+                </div>
+                <div class="modal-footer">
+                    <a role="button" (click)="implementar(file.name)" *ngIf="modalMostrar" class="btn btn-info">Aceptar</a>
+                    <a role="button" (click)="cancelarModal()" *ngIf="modalMostrar" class="btn btn-light">Cancelar</a>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,11 @@
+.fa-select {
+    font-family: 'Montserrat', 'Font Awesome 5 Free';
+    font-weight: 700;
+}
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }

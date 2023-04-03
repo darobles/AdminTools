@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Uso de Memoria RAM</h4>
+        <canvas #chart baseChart height="150px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" [colors]="[{backgroundColor: ['#2962FF', '#FF2929', '#20AB27']}]">
+        </canvas>
+        <div><b>RAM Total:</b> {{ ramTotal }} MB</div>
+        <div><b>RAM Disponible:</b> {{ ramLibre }} MB</div>
+        <div><b>RAM Utilizada:</b> {{ ramUsada }} MB</div>
+    </div>
+</div>

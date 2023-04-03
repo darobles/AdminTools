@@ -1,0 +1,7 @@
+{
+    "/SictravAdminToolsRest-web/rest/*":{
+        "target":"http://172.20.70.11:8081",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

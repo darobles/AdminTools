@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Uso de CPU</h4>
+        <canvas #chart baseChart height="150px" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+            [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+        <br>
+        <br>
+        <br>    
+    </div>
+</div>

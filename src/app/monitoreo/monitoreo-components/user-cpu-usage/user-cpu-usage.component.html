@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Uso de Recursos</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let column of headers">
+                            {{column}}
+                        </th>
+                    </tr>
+                    <tr *ngFor="let row of cpuInfo">
+                        <td>
+                            {{row.user}}
+                        </td>
+                        <td>
+                            {{row.pid}}
+                        </td>
+                        <td>
+                            {{row.cmd}}
+                        </td>
+                        <td>
+                            {{row.mem}}
+                        </td>
+                        <td>
+                            {{row.cpu}}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

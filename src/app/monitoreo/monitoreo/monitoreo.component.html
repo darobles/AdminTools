@@ -1,0 +1,28 @@
+
+<div class="row">
+    <div class="col-12">
+        <!-- You can find this in the dashboard-component -->
+      <app-configurador-panel [datoRam]="ramUsage"  [datoCpu]="cpuUsage" [datoDisk]="diskUsage" ></app-configurador-panel> 
+    </div>
+</div>
+<div class="row">
+    <!--<div class="col-lg-4 col-md-12">
+        <app-grafico-live></app-grafico-live> 
+    </div> -->
+    <div class="col-lg-4 col-md-12">
+        <app-grafico-cpujs (datos)="getDatos($event)"></app-grafico-cpujs> 
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <app-ram-doughnut [datos]="datoSistema"></app-ram-doughnut>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <app-disk-pie (datos)="getDatosDisk($event)"></app-disk-pie>
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+        <app-user-cpu-usage></app-user-cpu-usage>
+    </div>      
+    <div class="col-lg-6 col-md-12">
+        <app-disk-table [datos]="datosDisk"></app-disk-table>
+    </div>   
+</div>

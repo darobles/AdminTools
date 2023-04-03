@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Uso de Disco</h4>
+        <canvas #chart baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels"
+            [options]="pieChartOptions" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)" [colors]="[{backgroundColor: ['#E74C4C', '#20AB27']}]">
+        </canvas>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>

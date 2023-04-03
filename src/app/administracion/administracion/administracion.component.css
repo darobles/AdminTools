@@ -1,0 +1,10 @@
+.dropdown-menu { max-height: 280px; overflow-y: auto; min-width: 100% !important; background-attachment: local, local, scroll, scroll; }
+
+.dropdown-item { white-space: normal; }
+
+.mat-form-field-underline{
+    position:absolute !important;
+    width:0% !important;
+    pointer-events:none !important;
+    transform:scale3d(1, 1.0001, 1) !important;
+}

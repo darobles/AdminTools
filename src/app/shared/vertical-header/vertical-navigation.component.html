@@ -1,0 +1,80 @@
+<!-- ============================================================== -->
+<!-- toggle and nav items -->
+<!-- ============================================================== -->
+<!--<ul class="navbar-nav float-left mr-auto">
+    <li class="nav-item d-none d-lg-block">
+        <a (click)="toggleSidebar.emit()" class="nav-link sidebartoggler waves-effect waves-light"
+            href="javascript:void(0)">
+            <i class="ti-menu"></i>
+        </a>
+    </li>
+</ul> 
+<ul class="navbar-nav float-left" style="margin-left: 100px;">
+    <li class="nav-item" placement="bottom-right">
+        <div class="nav-link ">
+            <select [ngModel]="selectedDevice" (ngModelChange)="onChange($event)" class="form-control fa-select" style="display: inline-block; vertical-align: middle; font-weight: 100" >
+                <option *ngFor="let server of servidores" value="{{server.id}}" style="color: red;">                    
+                    &#xf192; {{server.nombre}}</option>
+            </select>
+        </div>
+            
+    </li>
+            
+</ul>-->
+
+<ul class="navbar-nav float-left" style="margin-left: 100px;">
+    <li *ngIf="loaded" class="nav-item dropdown" ngbDropdown placement="bottom-right">
+        <a  *ngIf="showComponent" ngbDropdownToggle class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown"
+            role="button" data-toggle="dropdown" style="color: #4f5467" aria-haspopup="true" aria-expanded="false">
+            <i class="fad fa-dot-circle" style="color:green;"></i>
+            
+            {{ servidorSel.nombre}} ( {{ servidorSel.ip }} )
+        </a>
+        <a  *ngIf="!showComponent" ngbDropdownToggle class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown"
+        role="button" data-toggle="dropdown" style="color: #4f5467" aria-haspopup="true" aria-expanded="false">
+        <i class="fad fa-dot-circle" style="color:red;"></i>
+        
+        {{ servidorSel.nombre}} ( {{ servidorSel.ip }} )
+    </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" ngbDropdownMenu>
+            <span class="dropdown-item"   role="button" (click)="selServidor(server.id)" *ngFor="let server of servidores">
+                <i class="fad fa-dot-circle" [ngStyle]="{'color': server.activo? 'green' : 'red'}"></i>
+                <span #Pname>{{server.nombre}}
+                </span>
+            </span>
+        </div>
+    </li>
+</ul>
+<!-- ============================================================== -->
+<!-- Right side toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav float-right">
+    <!--<li class="nav-link"  placement="bottom-right">
+        <span class="dropdown-item"  >
+            <i class="flag-icon"></i>
+            <span>{{ servidores[0].nombre }}
+            </span>
+        </span>
+        
+    </li>
+    <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-server"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" ngbDropdownMenu>
+            <span class="dropdown-item"  role="button" *ngFor="let server of servidores">
+                <i class="flag-icon"></i>
+                <span>{{server.nombre}}
+                </span>
+            </span>
+        </div>
+    </li> -->
+    <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a  class="nav-link" *ngIf="isLoggedIn" style="color:#67757c" (click)="logout()"
+            role="button" aria-haspopup="true" aria-expanded="false">
+            Salir
+            <i class="far fa-sign-out-alt"></i>
+        </a>
+    </li>
+</ul>

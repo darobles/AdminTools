@@ -1,0 +1,76 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/background/login-register.jpg) no-repeat center center;">
+    <div class="auth-box m-3 m-md-0">
+        <div id="loginform" >
+            <div class="logo">
+                <span class="db"><img src="assets/images/logo-icon.png" alt="logo" /></span>
+                <h5 class="font-medium m-b-20">Identificación</h5>
+            </div>
+            <!-- Form -->
+            <div class="row">
+                <div class="col-12">
+                    <form class="form-horizontal m-t-20" 
+                    #f="ngForm"
+                    id="loginform"
+                    name="form"
+                    (ngSubmit)="f.form.valid && onSubmit()">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                            </div>
+                            <input type="text"
+                            (focus)="onFocus()"
+                            name="username"
+                            [(ngModel)]="form.username"
+                            required
+                            #username="ngModel" placeholder="Usuario" 
+                            class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div    
+                        class="text-danger"
+                        *ngIf="f.submitted && username.invalid"
+                        >
+                        El nombre de usuario es requerido
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
+                            </div>
+                            <input type="password"
+                            name="password"
+                            (focus)="onFocus()"
+                            placeholder="Contraseña"
+                            [(ngModel)]="form.password"
+                            required
+                            minlength="6"
+                            #password="ngModel" class="form-control"  aria-label="Password" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="text-danger" *ngIf="f.submitted && password.invalid">
+                            <div *ngIf="password.errors.required">La contraseña es requerida.</div>
+                            <div *ngIf="password.errors.minlength">
+                                Debe tener 6 caracteres mínimo
+                            </div>    
+                        </div>
+                        <div
+                        role="alert"
+                        *ngIf="f.submitted && isLoginFailed"
+                          >
+                          <div role="alert" class="text-danger">
+                            {{ errorMessage }}
+                          </div> 
+                        </div>
+                       <!-- <div class="form-group row">
+                            <div class="col-md-12">
+                            </div>
+                        </div> -->
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 p-b-20">
+                                <button class="btn btn-block btn-lg btn-info">Log In</button>
+                            </div>
+                        </div>
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

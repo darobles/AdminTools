@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ confirmTittle }}</h4>
+</div>
+<div class="modal-body">
+    <p>{{ confirmMessage }}</p>
+</div>
+<div class="modal-footer">
+    <a role="button" class="btn btn-info" (click)="dialogRef.close(true)">Aceptar</a>
+    <a role="button" *ngIf="mostrarCancelar" class="btn btn-light" (click)="dialogRef.close(false)">Cancelar</a>
+</div>

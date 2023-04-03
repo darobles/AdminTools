@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Uso de Disco</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let column of headers">
+                            {{column}}
+                        </th>
+                    </tr>
+                    <tr *ngFor="let row of diskInfo">
+                        <td>
+                            {{row.ficheros}}
+                        </td>
+                        <td>
+                            {{row.bloques_1M}}
+                        </td>
+                        <td>
+                            {{row.disponible}}
+                        </td>
+                        <td>
+                            {{row.usados}}
+                        </td>
+                        <td>
+                            {{row.uso_per}}
+                        </td>
+                        <td>
+                            {{row.montado_en}}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
